@@ -8,15 +8,38 @@ const app = express();
 
 // ✅ Allow frontend domain and Vercel preview deployments
 const corsOptions = {
-    origin: [
+    origin: function (origin, callback) {
+      const allowedOrigins = [
         "https://students-paradise-website.vercel.app",
         "https://*.vercel.app"
-    ],
-    methods: "GET, POST, OPTIONS",
-    allowedHeaders: "Content-Type, Authorization, Accept",
+      ];
+      if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    methods: "GET,POST,OPTIONS",
+    allowedHeaders: ["Content-Type", "Authorization", "Accept"],
     credentials: true,
-};
+    preflightContinue: false,
+    optionsSuccessStatus: 204
+  };
+
 app.use(cors(corsOptions));
+
+app.enable('trust proxy');
+app.use((req, res, next) => {
+  res.setHeader('Vary', 'Origin');
+  next();
+});
+
+app.use((req, res, next) => {
+    console.log(`[${new Date().toISOString()}] ${req.method} ${req.path}`);
+    console.log('Origin:', req.headers.origin);
+    console.log('Headers:', req.headers);
+    next();
+  });
 
 // ✅ Handle preflight requests (OPTIONS method)
 app.options("*", cors(corsOptions)); // Let the cors middleware handle this
