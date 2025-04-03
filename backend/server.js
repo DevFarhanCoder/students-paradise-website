@@ -35,11 +35,16 @@ const transporter = nodemailer.createTransport({
 });
 
 app.post("/send-email", async (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "https://students-paradise-website.vercel.app");
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+
     const { name, phone, course } = req.body;
 
     const mailOptions = {
         from: process.env.EMAIL_USER,
-        to: process.env.RECEIVER_EMAIL, // Your email
+        to: process.env.RECEIVER_EMAIL,
         subject: "New Student Inquiry - Student's Paradise",
         text: `You have a new inquiry from:\n\nName: ${name}\nPhone: ${phone}\nCourse: ${course}`,
     };
