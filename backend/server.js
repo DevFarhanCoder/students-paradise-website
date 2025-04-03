@@ -7,21 +7,20 @@ const bodyParser = require("body-parser");
 const app = express();
 
 // ✅ Proper CORS setup
-const corsOptions = {
-    origin: "https://students-paradise-website.vercel.app", // Allow only your frontend
+app.use(cors({
+    origin: "https://students-paradise-website.vercel.app", // Allow your frontend
     methods: "GET,POST,OPTIONS",
     allowedHeaders: "Content-Type",
     credentials: true,
-};
-app.use(cors(corsOptions));
+}));
 
-// ✅ Handle preflight requests for CORS
-app.options("*", (req, res) => {
+// ✅ Handle preflight requests (OPTIONS)
+app.options("/send-email", (req, res) => {
     res.setHeader("Access-Control-Allow-Origin", "https://students-paradise-website.vercel.app");
-    res.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
     res.setHeader("Access-Control-Allow-Headers", "Content-Type");
     res.setHeader("Access-Control-Allow-Credentials", "true");
-    res.sendStatus(204);
+    return res.status(204).end();
 });
 
 app.use(bodyParser.json());
@@ -29,17 +28,12 @@ app.use(bodyParser.json());
 const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-        user: process.env.EMAIL_USER, // Your email
-        pass: process.env.EMAIL_PASS, // Your app password
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
     },
 });
 
 app.post("/send-email", async (req, res) => {
-    res.setHeader("Access-Control-Allow-Origin", "https://students-paradise-website.vercel.app");
-    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-    res.setHeader("Access-Control-Allow-Credentials", "true");
-
     const { name, phone, course } = req.body;
 
     const mailOptions = {
