@@ -16,6 +16,13 @@ const transporter = nodemailer.createTransport({
     },
 });
 
+// New Route for CORS 
+app.use(cors({
+    origin: "https://students-paradise-website.vercel.app", // Your frontend URL
+    methods: "GET, POST",
+    allowedHeaders: "Content-Type"
+}));
+
 app.post("/send-email", async (req, res) => {
     const { name, phone, course } = req.body;
 
