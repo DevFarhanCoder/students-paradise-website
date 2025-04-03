@@ -6,23 +6,20 @@ const nodemailer = require("nodemailer");
 
 const app = express();
 
-// ✅ Allow frontend domain
+// ✅ Allow frontend domain and Vercel preview deployments
 const corsOptions = {
-    origin: "https://students-paradise-website.vercel.app",
+    origin: [
+        "https://students-paradise-website.vercel.app",
+        "https://*.vercel.app"
+    ],
     methods: "GET, POST, OPTIONS",
-    allowedHeaders: "Content-Type, Authorization",
+    allowedHeaders: "Content-Type, Authorization, Accept",
     credentials: true,
 };
 app.use(cors(corsOptions));
 
 // ✅ Handle preflight requests (OPTIONS method)
-app.options("*", (req, res) => {
-    res.setHeader("Access-Control-Allow-Origin", "https://students-paradise-website.vercel.app");
-    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-    res.setHeader("Access-Control-Allow-Credentials", "true");
-    res.sendStatus(204);
-});
+app.options("*", cors(corsOptions)); // Let the cors middleware handle this
 
 app.use(bodyParser.json());
 
@@ -35,11 +32,6 @@ const transporter = nodemailer.createTransport({
 });
 
 app.post("/send-email", async (req, res) => {
-    res.setHeader("Access-Control-Allow-Origin", "https://students-paradise-website.vercel.app");
-    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-    res.setHeader("Access-Control-Allow-Credentials", "true");
-
     const { name, phone, course } = req.body;
 
     const mailOptions = {
