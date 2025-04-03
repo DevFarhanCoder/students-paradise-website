@@ -18,9 +18,9 @@ const transporter = nodemailer.createTransport({
 
 // New Route for CORS 
 const corsOptions = {
-    origin: "*", // or specify your frontend URL if needed
-    methods: "GET, POST",
-    allowedHeaders: "Content-Type",
+    origin: "https://students-paradise-website.vercel.app", // Allow your frontend
+    methods: "GET, POST", // Specify allowed methods
+    allowedHeaders: "Content-Type", // Allow headers
   };
   app.use(cors(corsOptions));
   
