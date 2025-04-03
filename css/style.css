@@ -6583,6 +6583,7 @@ button.bg-dark:focus {
 
 .d-block {
   display: block !important;
+  
 }
 
 .d-table {
@@ -6636,6 +6637,7 @@ button.bg-dark:focus {
 }
 
 @media (min-width: 768px) {
+
   .d-md-none {
     display: none !important;
   }
@@ -6647,6 +6649,7 @@ button.bg-dark:focus {
   }
   .d-md-block {
     display: block !important;
+    
   }
   .d-md-table {
     display: table !important;
@@ -9863,4 +9866,76 @@ a.text-dark:hover, a.text-dark:focus {
   margin: 0;
   padding: 0;
   list-style-type: none;
+}
+
+
+/* Small devices (landscape phones, 576px and up) */
+@media (max-width: 576px) {
+  .carousel-inner, .carousel-item {
+    height: 120px;
+  }
+}
+
+
+
+.carousel-item img {
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px; /* Sidebar width */
+    height: 100vh;
+    background: white;
+    z-index: 1050;
+    padding: 2rem;
+    box-shadow: 3px 0 10px rgba(0,0,0,0.1);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    overflow-y: auto;
+  }
+  
+  .navbar-collapse.show {
+    transform: translateX(0);
+  }
+  
+  /* Dark overlay when sidebar is open */
+  .navbar-collapse::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: calc(100% - 280px);
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  .navbar-collapse.show::before {
+    opacity: 1;
+  }
+  
+  /* Adjust navbar items for sidebar */
+  .navbar-nav {
+    flex-direction: column !important;
+  }
+  
+  .nav-item {
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Close button (optional) */
+  .close-sidebar {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
 }
