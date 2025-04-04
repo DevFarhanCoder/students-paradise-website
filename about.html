@@ -23,6 +23,9 @@
       rel="stylesheet"
     />
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+
     <!-- Flaticon Font -->
     <link href="lib/flaticon/font/flaticon.css" rel="stylesheet" />
 
@@ -169,28 +172,123 @@
             <a href="contact.html" class="nav-item nav-link">Contact</a>
           </div>
           <a
-            href="https://wa.me/+917738987445"
+            href="javascript:void(0);"
             class="btn btn-primary px-4"
             style="background-color: black; text-decoration: solid"
-            >Book Demo</a
+            data-toggle="modal"
+            data-target="#demoModal"
           >
+            Book Demo
+          </a>
         </div>
       </nav>
     </div>
     <!-- Navbar End -->
-
+    <!-- Modal Start -->
+    <div
+      class="modal fade"
+      id="demoModal"
+      tabindex="-1"
+      aria-labelledby="demoModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header bg-secondary text-white">
+            <h5 class="modal-title" id="demoModalLabel" style="color: white">
+              Hurry!
+            </h5>
+            <button
+              type="button"
+              class="close text-white"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body bg-primary">
+            <form id="contactForm">
+              <div class="form-group">
+                <input
+                  type="text"
+                  id="name"
+                  class="form-control border-0 p-4"
+                  placeholder="Your Name"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="tel"
+                  id="phone"
+                  class="form-control border-0 p-4"
+                  placeholder="Your Phone Number"
+                  required
+                  pattern="[0-9]{10}"
+                  title="Enter a valid 10-digit phone number"
+                />
+              </div>
+              <div class="form-group">
+                <select
+                  id="course"
+                  class="custom-select border-0 px-4"
+                  required
+                >
+                  <option value="" selected disabled>Select A Class</option>
+                  <option value="Class 11th + 12th (Science)">
+                    Class 11th + 12th (Science)
+                  </option>
+                  <option value="Class 11th + 12th + JEE MAINS (Science)">
+                    Class 11th + 12th + JEE MAINS (Science)
+                  </option>
+                  <option value="Class 11th + 12th + MHT-CET (Science)">
+                    Class 11th + 12th + MHT-CET (Science)
+                  </option>
+                </select>
+              </div>
+              <div>
+                <button class="btn btn-dark btn-block py-3" type="submit">
+                  Submit
+                </button>
+              </div>
+            </form>
+            <div class="text-center mt-3">
+              <a href="https://wa.me/+917738987445" class="btn btn-success"
+                >Contact on WhatsApp</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal End  -->
+     <!-- Sticky Button -->
+     <div class="sticky-buttons">
+      <!-- Call Button (Blue) -->
+      <a href="tel:+917738987445" class="btn btn-info p-3 call-button">
+        <i class="fa fa-phone"></i>
+      </a>
+    
+      <!-- WhatsApp Button (Green) -->
+      <a href="https://wa.me/+917738987445" class="btn btn-success p-3 whatsapp-button">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+    </div>
+      <!-- Sticky button Ended -->
     <!-- Header Start -->
     <div
       class="container-fluid mb-5"
       style="
         background: url('https://allchicago.org/wp-content/uploads/2023/04/Ambassadors-Flyer-Image-scaled-e1681937229150.jpg')
           no-repeat center center/cover;
-        min-height: 250px; padding: 0px;
+        min-height: 250px;
+        padding: 0px;
       "
     >
       <div
         class="d-flex flex-column align-items-center justify-content-center text-white text-center"
-        style="background: rgba(0, 0, 0, 0.5); min-height: 250px; ;"
+        style="background: rgba(0, 0, 0, 0.5); min-height: 250px"
       >
         <h3 class="display-3 font-weight-bold" style="color: white">
           About Us
@@ -249,11 +347,14 @@
               </div>
             </div>
             <a
-              href="https://wa.me/+917738987445"
-              class="btn btn-primary mt-2 py-2 px-4"
-              style="background-color: black; text-decoration: solid"
-              >Enquiry Now</a
-            >
+            href="javascript:void(0);"
+            class="btn btn-primary px-4"
+            style="background-color: black; text-decoration: solid"
+            data-toggle="modal"
+            data-target="#demoModal"
+          >
+            Enquiry Now
+          </a>
           </div>
         </div>
       </div>

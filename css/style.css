@@ -9939,3 +9939,58 @@ a.text-dark:hover, a.text-dark:focus {
     cursor: pointer;
   }
 }
+
+/* Sticky Buttons */
+.sticky-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Increased gap for better spacing */
+  z-index: 1000;
+}
+
+.sticky-buttons a {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  font-size: 28px; /* Increase icon size */
+  color: white;
+  text-decoration: none;
+}
+
+/* Button Colors */
+.call-button {
+  background-color: #007bff; /* Blue for Call */
+}
+
+.whatsapp-button {
+  background-color: #25d366; /* Green for WhatsApp */
+}
+
+/* Ensuring the icons are perfectly centered */
+.sticky-buttons a i {
+  font-size: 26px;
+  line-height: 1;
+  text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .sticky-buttons {
+    bottom: 15px;
+    right: 15px;
+    gap: 8px;
+  }
+
+  .sticky-buttons a {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+}
