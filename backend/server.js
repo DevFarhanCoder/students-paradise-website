@@ -24,7 +24,7 @@ const corsOptions = {
     credentials: true,
     preflightContinue: false,
     optionsSuccessStatus: 204
-  };
+};
 
 app.use(cors(corsOptions));
 
@@ -39,11 +39,9 @@ app.use((req, res, next) => {
     console.log('Origin:', req.headers.origin);
     console.log('Headers:', req.headers);
     next();
-  });
+});
 
-// ✅ Handle preflight requests (OPTIONS method)
-app.options("*", cors(corsOptions)); // Let the cors middleware handle this
-
+app.options("*", cors(corsOptions)); // Handle preflight requests
 app.use(bodyParser.json());
 
 const transporter = nodemailer.createTransport({
@@ -73,5 +71,5 @@ app.post("/send-email", async (req, res) => {
     }
 });
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
+// ✅ Export app instead of listening (required by Vercel)
+module.exports = app;
