@@ -33,4 +33,6 @@ app.post("/send-email", async (req, res) => {
 });
 
 // ✅ Export app (DO NOT use app.listen)
-module.exports = app;
+module.exports = (req, res) => {
+    app(req, res);
+};
